@@ -18,5 +18,6 @@ Basic Component Design
  create a redux store and store the user Info
  subscribe the navbar with redux store
  redirect to feed page once the login is successful using useNavigate hook
+ built logout feature
 
 
