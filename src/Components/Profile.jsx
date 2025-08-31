@@ -1,8 +1,13 @@
+import { useSelector } from "react-redux";
+import EditProfile from "./EditProfile";
+
 const Profile = ()=>{
+
+  const user = useSelector(store => store?.user?.userInfo)
   return (
     <div>
 
-        Profile Page
+      {user &&  <EditProfile user = {user} /> }
     </div>
   )
 

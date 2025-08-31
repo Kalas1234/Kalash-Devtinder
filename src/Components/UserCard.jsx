@@ -1,8 +1,5 @@
 const UserCard = ({user}) => {
 
-    console.log('check4',user)
-
-
     const {firstName, lastName, age,gender, photoUrl, about} = user;
 
     return  (
