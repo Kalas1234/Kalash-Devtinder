@@ -19,5 +19,7 @@ Basic Component Design
  subscribe the navbar with redux store
  redirect to feed page once the login is successful using useNavigate hook
  built logout feature
+ Get the feed and add the feed in the store 
+ build the user card on feed.
 
 
