@@ -12,6 +12,7 @@ const feedSlice = createSlice({
 
             return action.payload;
         },
+        // eslint-disable-next-line no-unused-vars
         removeFeed: (state) => {
             return null;
         }

@@ -22,5 +22,6 @@ Basic Component Design
  Get the feed and add the feed in the store 
  build the user card on feed.
  Implement Edit Profile feature and Integrate the save profile api.
+ Implement Connection Page for see the connections we have
 
 
