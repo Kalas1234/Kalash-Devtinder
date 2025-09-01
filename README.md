@@ -23,5 +23,7 @@ Basic Component Design
  build the user card on feed.
  Implement Edit Profile feature and Integrate the save profile api.
  Implement Connection Page for see the connections we have
+ Implement Connection Page for see the connection requests.
+ Implement the functionality of Accept/Reject connection request.
 
 

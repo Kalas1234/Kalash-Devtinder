@@ -8,13 +8,7 @@ import { BASE_URL } from '../../utils/constants';
 const Connections = () => {
     const dispatch = useDispatch();
     const connections = useSelector((store) => store?.connections);
-    useEffect(() => {
-        fetchConnections();
-    }, []);
-
-    if (!connections) return;
-    if (connections.length === 0) return <h1 className="text-2xl text-white">No Connections Found</h1>;
-    const fetchConnections = async () => {
+     const fetchConnections = async () => {
         try {
             const res = await axios.get(`${BASE_URL}/user/connections`, {
                 withCredentials: true
@@ -24,6 +18,12 @@ const Connections = () => {
             console.error(error);
         }
     };
+    useEffect(() => {
+        fetchConnections();
+    }, []);
+
+    if (!connections) return;
+    if (connections.length === 0) return <h1 className="text-2xl text-white">No Connections Found</h1>;
 
     return (
         <div className="flex flex-col justify-center my-10">
