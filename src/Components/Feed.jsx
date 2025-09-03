@@ -28,6 +28,9 @@ const Feed = () => {
         getFeed();
     }, []);
 
+   if(!feed)return;
+    if(feed.length === 0) return <h1 className='flex justify-center my-10 text-white text-3xl'>No Feeds Found!</h1>
+
     return <div className='flex my-10 justify-center'>
 
       {Array.isArray(feed) && feed.length > 0 && (

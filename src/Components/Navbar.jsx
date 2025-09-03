@@ -4,13 +4,10 @@ import { BASE_URL } from '../../utils/constants';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { removeUser } from '../../utils/userSlice';
-import { removeFeed } from '../../utils/feedSlice';
 import axios from 'axios';
 
 
 const Navbar = () => {
-
-
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const { userInfo } = useSelector((store) => store?.user);
@@ -25,7 +22,6 @@ const Navbar = () => {
                 }
             );
         dispatch(removeUser())
-        dispatch(removeFeed())
         navigate('/login')
 
         } catch (error) {

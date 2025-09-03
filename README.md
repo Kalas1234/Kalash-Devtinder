@@ -25,5 +25,6 @@ Basic Component Design
  Implement Connection Page for see the connections we have
  Implement Connection Page for see the connection requests.
  Implement the functionality of Accept/Reject connection request.
+ Send/Ignore the user card from the feed.
 
 
