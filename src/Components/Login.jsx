@@ -7,9 +7,13 @@ import { addUser } from '../../utils/userSlice';
 import { useNavigate } from 'react-router-dom';
 
 const Login = () => {
-    const [email, setEmailId] = useState('kalashgangwal3030@gmail.com');
-    const [password, setPassword] = useState('Kalash@1234');
+    const [email, setEmailId] = useState('');
+    const [password, setPassword] = useState('');
+    const [firstName, setFirstName] = useState('');
+    const [lastName, setLastName] = useState('');
     const [error, setError] = useState('');
+    const [isLogin, setIsLogin] = useState(true);
+
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const handleLogin = async () => {
@@ -30,17 +34,69 @@ const Login = () => {
             setError(err?.response?.data);
         }
     };
-
+     const handleSignUp = async () => {
+        try {
+            const res = await axios.post(
+                `${BASE_URL}/signup`,
+                {
+                    emailId: email,
+                    password,
+                    firstName,
+                    lastName,
+                },
+                { withCredentials: true }
+            ); //tells browser to send credentils/cookie in the response or attach the cookie in the request header
+            
+            console.log('check50',res)
+            dispatch(addUser(res?.data?.data));
+            navigate('/profile');
+            setError('');
+        } catch (err) {
+            setError(err?.response?.data);
+        }
+    };
+     
     return (
         <div className="flex justify-center items-center my-10">
             <div className="card bg-base-300 w-96 shadow-sm">
                 <div className="card-body">
-                    <h2 className="card-title">Login!</h2>
+                    <h2 className="card-title">{isLogin ? "Login" : "Sign Up"}</h2>
                     <div>
                         <form>
-                            <div class="form-control w-full max-w-xs">
+                            {!isLogin && 
+                                <>
+                                    {' '}
+                                    <div class="form-control w-full max-w-xs">
+                                        <label class="label">
+                                            <span class="label-text">First Name</span>
+                                        </label>
+                                        <input
+                                            type="text"
+                                            placeholder="Type here"
+                                            value={firstName}
+                                            class="input input-bordered w-full max-w-xs"
+                                            onChange={(e) => setFirstName(e.target.value)}
+                                        />
+                                    </div>
+                                    <div class="form-control w-full max-w-xs my-2">
+                                        <label class="label">
+                                            <span class="label-text">Last Name</span>
+                                        </label>
+                                        <input
+                                            type="text"
+                                            placeholder="Type here"
+                                            value={lastName}
+                                            class="input input-bordered w-full max-w-xs"
+                                            onChange={(e) => setLastName(e.target.value)}
+                                        />
+                                    </div>
+                                    
+                                </>
+                            }
+
+                            <div class="form-control w-full max-w-xs my-2">
                                 <label class="label">
-                                    <span class="label-text">Email</span>
+                                    <span class="label-text">Email Id</span>
                                 </label>
                                 <input
                                     type="text"
@@ -66,10 +122,11 @@ const Login = () => {
                     </div>
                     {error.length !== 0 && <p className="text-red-500">{error}</p>}
                     <div className="card-actions flex justify-center my-4 ">
-                        <button onClick={handleLogin} className="btn btn-primary">
-                            Login
+                        <button onClick={isLogin ? handleLogin : handleSignUp} className="btn btn-primary">
+                            {isLogin ? 'Login' :'Sign Up'}
                         </button>
                     </div>
+                    <p className='m-auto cursor-pointer py-2' onClick={() => setIsLogin(prev => !prev)}>{isLogin ? "New User? Register Now": "Existing User? Login Here"} </p>
                 </div>
             </div>
         </div>
